@@ -1,0 +1,10 @@
+:root {
+  --uc-font-size: 1rem;
+  --uc-background-color: #ff0000;
+}
+
+.uc-button {
+  display: inline-block;
+  font-size: var(--uc-font-size);
+  background-color: var(--uc-background-color);
+}

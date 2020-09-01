@@ -2,23 +2,126 @@
   "name": "useful-components",
   "version": "1.0.0",
   "description": "A collection with useful components built with React",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Eduardo Sotero <eduardoliberatosotero@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/bundle.min.js",
+  "types": "src/index.ts",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dudusotero/useful-components.git"
+    "url": "https://github.com/dudusotero/useful-components.git"
   },
   "keywords": [
     "react",
-    "components",
-    "ui"
+    "css",
+    "spinners"
   ],
-  "author": "Eduardo Sotero <eduardoliberatosotero@gmail.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dudusotero/useful-components/issues"
   },
-  "homepage": "https://github.com/dudusotero/useful-components#readme"
+  "homepage": "https://dudusotero.github.io/useful-components/",
+  "scripts": {
+    "commit": "git add . && git-cz",
+    "prebuild": "rm -rf dist",
+    "build": "run-p compile:* bundle",
+    "compile": "babel src --extensions '.ts,.tsx' --ignore '**/*.test.tsx,**/*.test.ts,**/*.story.tsx'",
+    "compile:cjs": "yarn compile --out-dir dist",
+    "compile:esm": "BABEL_ENV=esm yarn compile --out-dir dist/esm",
+    "bundle": "rollup -c",
+    "postbuild": "run-p copy:*",
+    "copy": "rsync -zarvm --include='*/' --include='*.css' --exclude='*' src/",
+    "copy:cjs": "yarn copy dist",
+    "copy:esm": "yarn copy dist/esm",
+    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier '**/*.{js,ts,tsx}' --write",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:staged": "jest --findRelatedTests",
+    "storybook": "start-storybook -c storybook",
+    "prestorybook:build": "rm -rf storybook-static",
+    "storybook:build": "build-storybook -c storybook",
+    "storybook:serve": "serve storybook-static",
+    "predeploy": "yarn storybook:build",
+    "deploy": "gh-pages -d storybook-static",
+    "prepublishOnly": "yarn build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-knobs": "^6.0.20",
+    "@storybook/addons": "^6.0.20",
+    "@storybook/react": "^6.0.20",
+    "@storybook/theming": "^6.0.20",
+    "@types/jest": "^26.0.10",
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-test-renderer": "^16.9.3",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "babel-jest": "^26.3.0",
+    "commitizen": "^4.2.1",
+    "coveralls": "^3.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "gh-pages": "^3.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.2.13",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "rollup": "^2.26.7",
+    "rollup-plugin-postcss": "^3.1.6",
+    "rollup-plugin-terser": "^7.0.1",
+    "serve": "^11.3.2",
+    "typescript": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.13"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "yarn lint:fix",
+      "yarn test:staged"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }

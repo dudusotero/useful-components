@@ -1,0 +1,27 @@
+{
+  "name": "cra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "serve": "serve build"
+  },
+  "dependencies": {
+    "react": "latest",
+    "useful-components": "../..",
+    "react-dom": "latest",
+    "react-scripts": "latest"
+  },
+  "devDependencies": {
+    "serve": "latest"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

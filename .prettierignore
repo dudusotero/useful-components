@@ -1,0 +1,15 @@
+coverage
+
+dist
+
+build
+
+node_modules
+
+storybook-static
+
+*.html
+
+*.md
+
+tsconfig.json
