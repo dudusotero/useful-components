@@ -6,8 +6,8 @@ node_js:
   - node
 
 script:
-  - npm run lint
-  - npm run test:coveralls
+  - yarn lint
+  - yarn test:coveralls
 
 nofications:
   email: false
