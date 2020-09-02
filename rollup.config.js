@@ -39,9 +39,7 @@ export default [
         extensions,
       }),
       babel(babelOptions),
-      postcss({
-        extract: 'style.css',
-      }),
+      postcss(),
     ],
   },
   {
@@ -55,11 +53,8 @@ export default [
       resolve({
         extensions,
       }),
-      babel({
-        ...babelOptions,
-      }),
+      babel(babelOptions),
       postcss({
-        extract: 'style.min.css',
         minimize: true,
       }),
       terser(),

@@ -1,13 +1,16 @@
-import { ButtonHTMLAttributes, CSSProperties } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  backgroundColor?: string
-  fontSize?: number
+  children?: ReactNode
+  size?: 'small' | 'medium' | 'large'
+  kind?: 'contained' | 'outlined' | 'text'
+  tier?: 'primary' | 'secondary'
 }
 
 export type ButtonRef = HTMLButtonElement
 
-export interface StyleProps extends CSSProperties {
-  '--uc-font-size'?: string
-  '--uc-background-color'?: string
+export const defaultProps: ButtonProps = {
+  kind: 'contained',
+  size: 'medium',
+  tier: 'primary',
 }

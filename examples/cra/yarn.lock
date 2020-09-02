@@ -10390,7 +10390,7 @@ use@^3.1.0:
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
 useful-components@../..:
-  version "1.0.0"
+  version "1.0.1"
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"

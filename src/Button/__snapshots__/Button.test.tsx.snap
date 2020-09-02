@@ -2,7 +2,9 @@
 
 exports[`renders correctly 1`] = `
 <button
-  className="uc-button"
-  style={Object {}}
+  className="artio-button"
+  data-kind="contained"
+  data-size="medium"
+  data-tier="primary"
 />
 `;

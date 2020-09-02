@@ -16,8 +16,13 @@ module.exports = [
         // CSS as part of the client build (or use isomorphic-style-loader).
         // See webpack-contrib/mini-css-extract-plugin#90
         {
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.js$/,
@@ -59,8 +64,13 @@ module.exports = [
           },
         },
         {
-          test: /\.css$/,
-          loader: 'css-loader',
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
         },
       ],
     },
